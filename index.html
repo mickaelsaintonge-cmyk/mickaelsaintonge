@@ -796,13 +796,15 @@
    <div>
     <div class="sec-label reveal">Prestations</div>
     <h2 class="presta-sidebar-title reveal" style="transition-delay:.1s">
-     LE<br />GESTE,<br /><em>dans le<br />détail.</em>
+     L'ESSENTIEL,<br /><em>dans le<br />détail.</em>
     </h2>
     <nav class="presta-nav reveal" style="transition-delay:.18s">
-     <button class="tab-btn active" data-target="balayage">Balayage & Couleur</button>
+     <button class="tab-btn active" data-target="balayage">Balayage</button>
+     <button class="tab-btn" data-target="couleur">Couleur</button>
      <button class="tab-btn" data-target="coupe">Coupe</button>
      <button class="tab-btn" data-target="soins">Soins</button>
      <button class="tab-btn" data-target="lissage">Lissage</button>
+     <button class="tab-btn" data-target="evenement">Événementiel</button>
     </nav>
    </div>
    <p class="t-body reveal" style="font-size:.62rem; transition-delay:.25s;">
@@ -811,29 +813,38 @@
   </div>
 
   <div class="presta-main">
+
    <!-- Balayage -->
    <div class="presta-group active" id="group-balayage">
-    <p class="presta-group-title">Balayage & Couleur</p>
+    <p class="presta-group-title">Balayage</p>
     <div class="presta-row"><div><div class="presta-name">Balayage / coiffage</div><div class="presta-desc">Shampoing et soin inclus · 2h</div></div><div class="presta-price">dès 235€</div></div>
     <div class="presta-row"><div><div class="presta-name">Balayage / coupe / coiffage</div><div class="presta-desc">Shampoing et soin inclus · 2h30</div></div><div class="presta-price">dès 280€</div></div>
     <div class="presta-row"><div><div class="presta-name">Balayage / lighting / coiffage</div><div class="presta-desc">Éclaircissement base + mèches · 2h15</div></div><div class="presta-price">dès 265€</div></div>
     <div class="presta-row"><div><div class="presta-name">Balayage / lighting / coupe / coiffage</div><div class="presta-desc">Formule complète · 2h40</div></div><div class="presta-price">dès 295€</div></div>
-    <div class="presta-row"><div><div class="presta-name">Coloration / coupe / coiffage</div><div class="presta-desc">Soin adapté inclus · 2h</div></div><div class="presta-price">dès 200€</div></div>
-    <div class="presta-row"><div><div class="presta-name">Coloration / coiffage</div><div class="presta-desc">Soin adapté inclus · 1h30</div></div><div class="presta-price">dès 140€</div></div>
     <div class="presta-note">
      <div class="presta-note-bar"></div>
-     <p class="presta-note-text">Le shampoing et un soin adapté sont systématiquement inclus. Colorations aux pigments botaniques — respect du cheveu, éclat durable.</p>
+     <p class="presta-note-text">Le shampoing et un soin adapté sont systématiquement inclus.</p>
+    </div>
+   </div>
+
+   <!-- Couleur -->
+   <div class="presta-group" id="group-couleur">
+    <p class="presta-group-title">Couleur</p>
+    <div class="presta-row"><div><div class="presta-name">Couleur / coiffage</div><div class="presta-desc">Soin adapté inclus · 1h30</div></div><div class="presta-price">dès 140€</div></div>
+    <div class="presta-row"><div><div class="presta-name">Couleur / coupe / coiffage</div><div class="presta-desc">Soin adapté inclus · 2h</div></div><div class="presta-price">dès 200€</div></div>
+    <div class="presta-row"><div><div class="presta-name">Coloration homme</div><div class="presta-desc">1h</div></div><div class="presta-price">dès 80€</div></div>
+    <div class="presta-row"><div><div class="presta-name">Coloration homme / coupe</div><div class="presta-desc">1h30</div></div><div class="presta-price">dès 150€</div></div>
+    <div class="presta-note">
+     <div class="presta-note-bar"></div>
+     <p class="presta-note-text">Pigments botaniques — respect du cheveu, éclat durable. Soin adapté toujours inclus.</p>
     </div>
    </div>
 
    <!-- Coupe -->
    <div class="presta-group" id="group-coupe">
     <p class="presta-group-title">Coupe</p>
-    <div class="presta-row"><div><div class="presta-name">Coupe femme</div><div class="presta-desc">Shampoing · coupe · coiffage</div></div><div class="presta-price">Devis</div></div>
-    <div class="presta-row"><div><div class="presta-name">Coupe femme + Brushing</div><div class="presta-desc">Shampoing · coupe · brushing · coiffage</div></div><div class="presta-price">Devis</div></div>
-    <div class="presta-row"><div><div class="presta-name">Coupe homme</div><div class="presta-desc">Shampoing · coupe · finition · 1h30</div></div><div class="presta-price">dès 150€</div></div>
-    <div class="presta-row"><div><div class="presta-name">Coloration homme / coupe</div><div class="presta-desc">Couleur + coupe · 1h30</div></div><div class="presta-price">dès 150€</div></div>
-    <div class="presta-row"><div><div class="presta-name">Coloration homme seule</div><div class="presta-desc">1h</div></div><div class="presta-price">dès 80€</div></div>
+    <div class="presta-row"><div><div class="presta-name">Coupe femme</div><div class="presta-desc">Shampoing · coupe · coiffage · 1h</div></div><div class="presta-price">dès 125€</div></div>
+    <div class="presta-row"><div><div class="presta-name">Coupe homme</div><div class="presta-desc">Shampoing · coupe · finition · 45min</div></div><div class="presta-price">70€</div></div>
     <div class="presta-note">
      <div class="presta-note-bar"></div>
      <p class="presta-note-text">Devis sur demande selon le temps de travail.</p>
@@ -843,13 +854,12 @@
    <!-- Soins -->
    <div class="presta-group" id="group-soins">
     <p class="presta-group-title">Soins</p>
-    <div class="presta-row"><div><div class="presta-name">Balayage / soin / coiffage</div><div class="presta-desc">2h30</div></div><div class="presta-price">dès 345€</div></div>
-    <div class="presta-row"><div><div class="presta-name">Balayage / coupe / soin / coiffage</div><div class="presta-desc">2h50</div></div><div class="presta-price">dès 390€</div></div>
-    <div class="presta-row"><div><div class="presta-name">Balayage / lighting / soin / coiffage</div><div class="presta-desc">2h30</div></div><div class="presta-price">dès 375€</div></div>
-    <div class="presta-row"><div><div class="presta-name">Coloration / coupe / soin / coiffage</div><div class="presta-desc">2h30</div></div><div class="presta-price">dès 310€</div></div>
+    <div class="presta-row"><div><div class="presta-name">Soin Tokio Inkarami · cheveux courts</div><div class="presta-desc">Réparation profonde · coiffage inclus · 1h</div></div><div class="presta-price">dès 175€</div></div>
+    <div class="presta-row"><div><div class="presta-name">Soin Tokio Inkarami · cheveux mi-longs</div><div class="presta-desc">Réparation profonde · coiffage inclus · 1h</div></div><div class="presta-price">dès 185€</div></div>
+    <div class="presta-row"><div><div class="presta-name">Soin Tokio Inkarami · cheveux longs</div><div class="presta-desc">Réparation profonde · coiffage inclus · 1h</div></div><div class="presta-price">dès 195€</div></div>
     <div class="presta-note">
      <div class="presta-note-bar"></div>
-     <p class="presta-note-text">Les soins réparent la fibre en profondeur — douceur, brillance, résistance. Disponibles seuls ou en complément de vos prestations.</p>
+     <p class="presta-note-text">Les soins Tokio Inkarami réparent la fibre en profondeur — douceur, brillance, résistance. Disponibles seuls ou en complément de vos prestations.</p>
     </div>
    </div>
 
@@ -857,12 +867,24 @@
    <div class="presta-group" id="group-lissage">
     <p class="presta-group-title">Lissage</p>
     <div class="presta-row"><div><div class="presta-name">Lissage brésilien</div><div class="presta-desc">Kératine · devis selon temps de travail</div></div><div class="presta-price">Sur devis</div></div>
-    <div class="presta-row"><div><div class="presta-name">Lissage japonais</div><div class="presta-desc">Permanent · lissage profond et durable</div></div><div class="presta-price">Sur devis</div></div>
     <div class="presta-note">
      <div class="presta-note-bar"></div>
      <p class="presta-note-text">Devis sur demande selon le temps de travail.</p>
     </div>
    </div>
+
+   <!-- Événementiel -->
+   <div class="presta-group" id="group-evenement">
+    <p class="presta-group-title">Événementiel</p>
+    <div class="presta-row"><div><div class="presta-name">Coiffure de soirée</div><div class="presta-desc">Mise en forme · chignon · tresses · coiffage élaboré</div></div><div class="presta-price">Sur devis</div></div>
+    <div class="presta-row"><div><div class="presta-name">Coiffure de mariage</div><div class="presta-desc">Essai inclus · jour J · formule sur-mesure</div></div><div class="presta-price">Sur devis</div></div>
+    <div class="presta-row"><div><div class="presta-name">Événement particulier</div><div class="presta-desc">Shooting photo · défilé · occasion spéciale</div></div><div class="presta-price">Sur devis</div></div>
+    <div class="presta-note">
+     <div class="presta-note-bar"></div>
+     <p class="presta-note-text">Chaque prestation événementielle est construite sur-mesure. Contactez-moi directement pour en discuter.</p>
+    </div>
+   </div>
+
   </div>
  </div>
 </section>
