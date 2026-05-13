@@ -606,45 +606,64 @@
     MOBILE
   ══════════════════════════ */
   @media (max-width: 900px) {
-   nav { padding: 0 20px; }
-   .nav-links { display: none; }
+   /* Cacher le curseur personnalisé sur mobile */
+   #cursor { display: none; }
+   body { cursor: auto; }
+   a, button { cursor: pointer; }
 
-   .hero-photos { grid-template-columns: 1fr 1fr; grid-template-rows: 180px 140px; }
+   /* Fix scroll global */
+   html, body { overflow-x: hidden; -webkit-overflow-scrolling: touch; }
+
+   nav { padding: 0 16px; height: 48px; }
+   .nav-links { display: none; }
+   .nav-logo { font-size: .65rem; white-space: nowrap; }
+   .nav-cta { font-size: .5rem; padding: 7px 12px; white-space: nowrap; letter-spacing: .1em; }
+
+   .hero-photos { grid-template-columns: 1fr 1fr; grid-template-rows: 160px 130px; }
    .hero-photo.tall { grid-row: span 1; }
-   .hero-title-block { padding: 24px 20px 0; }
-   .hero-title { font-size: clamp(4rem, 16vw, 7rem); }
-   .hero-foot { grid-template-columns: 1fr; padding: 16px 20px; gap: 10px; }
-   .hero-foot-right { text-align: left; }
+   .hero-title-block { padding: 20px 16px 0; }
+   .hero-title { font-size: clamp(3.5rem, 14vw, 6rem); }
+   .hero-foot { grid-template-columns: 1fr 1fr; padding: 14px 16px; gap: 8px; }
+   .hero-foot-right { text-align: right; }
    .hero-ticker { display: none; }
+   .hero-foot-cta { justify-content: center; grid-column: span 2; }
 
    .salon-grid, #reservation { grid-template-columns: 1fr; }
-   .salon-left { border-right: none; border-bottom: 1px solid var(--border); padding: 64px 20px; }
-   .salon-right { padding: 64px 20px; }
+   .salon-left { border-right: none; border-bottom: 1px solid var(--border); padding: 48px 16px; }
+   .salon-right { padding: 48px 16px; }
    .salon-stats { grid-template-columns: repeat(2,1fr); }
    .salon-photos { grid-template-rows: 200px 130px; }
+   .salon-photos .s-photo.tall { grid-row: span 1; }
 
    .exp-header { flex-direction: column; }
-   .exp-header-title { border-right: none; border-bottom: 1px solid var(--border); padding: 40px 20px; }
-   .exp-header-right { padding: 32px 20px; }
+   .exp-header-title { border-right: none; border-bottom: 1px solid var(--border); padding: 36px 16px; }
+   .exp-header-right { padding: 28px 16px; }
    .exp-grid { grid-template-columns: 1fr; }
-   .exp-col { border-right: none; border-bottom: 1px solid var(--border); padding: 40px 20px; }
+   .exp-col { border-right: none; border-bottom: 1px solid var(--border); padding: 36px 16px; }
 
    .presta-wrap { grid-template-columns: 1fr; }
-   .presta-sidebar { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--border); padding: 56px 20px; }
-   .presta-nav { flex-direction: row; flex-wrap: wrap; gap: 6px; margin-top: 28px; }
-   .tab-btn { border: 1px solid var(--border) !important; padding: 8px 14px; font-size: .54rem; }
+   .presta-sidebar { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--border); padding: 48px 16px; }
+   .presta-nav { flex-direction: row; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
+   .tab-btn { border: 1px solid var(--border) !important; padding: 7px 11px; font-size: .5rem; flex: none; }
    .tab-btn.active::before { display: none; }
-   .tab-btn.active { padding-left: 14px; }
-   .presta-main { padding: 48px 20px; }
-   .tokio-block { flex-direction: column; padding: 24px 20px; }
+   .tab-btn.active { padding-left: 11px; }
+   .presta-main { padding: 40px 16px; }
+   .presta-group-title { font-size: 1.5rem; }
 
-   .resa-left { border-right: none; border-bottom: 1px solid var(--border); padding: 64px 20px; }
+   /* Fix "PRENDRE RENDEZ-VOUS" sur mobile */
+   .resa-right-title { font-size: 1.8rem; line-height: 1; }
+   .resa-right { padding: 48px 16px; min-height: auto; }
+
+   .resa-left { border-right: none; border-bottom: 1px solid var(--border); padding: 48px 16px; }
    .contact-grid { grid-template-columns: 1fr; }
-   .contact-maps { flex-direction: column; align-items: flex-start; padding: 24px 20px; }
-   .contact-inner { padding: 56px 20px; }
+   .contact-maps { flex-direction: column; align-items: flex-start; padding: 20px 16px; }
+   .contact-inner { padding: 48px 16px; }
    .footer-top { grid-template-columns: 1fr; }
-   .footer-col { border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); padding: 36px 20px; }
-   .footer-bottom { padding: 16px 20px; flex-direction: column; gap: 6px; }
+   .footer-col { border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); padding: 32px 16px; }
+   .footer-bottom { padding: 14px 16px; flex-direction: column; gap: 6px; }
+
+   /* Modale plein écran sur mobile */
+   .modal-box { width: 100vw; height: 100vh; }
   }
  </style>
 </head>
