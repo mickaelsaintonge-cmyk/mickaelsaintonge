@@ -612,22 +612,26 @@
    html, body { overflow-x: hidden; -webkit-overflow-scrolling: touch; }
 
    /* NAV — logo complet, bouton compact */
-   nav { padding: 0 14px; height: 48px; }
+   nav { padding: 0 12px; height: 44px; }
    .nav-links { display: none; }
-   .nav-logo { font-size: .6rem; letter-spacing: .05em; white-space: nowrap; }
-   .nav-cta { font-size: .48rem; padding: 6px 10px; white-space: nowrap; letter-spacing: .08em; }
+   .nav-logo { font-size: .55rem; letter-spacing: .04em; white-space: nowrap; }
+   .nav-cta { font-size: .38rem; padding: 5px 8px; white-space: nowrap; letter-spacing: .04em; }
 
-   /* HERO — grille 2x2 propre, titre à côté */
+   /* HERO — grille 2x2 + 1 rangée, toutes les photos */
    .hero-photos {
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 200px 200px;
+    grid-template-rows: 180px 180px 200px;
    }
    .hero-photo.tall { grid-row: span 1; }
-   /* Cacher la 5e photo sur mobile */
-   .hero-photo:nth-child(5) { display: none; }
+   .hero-photo:nth-child(5) { grid-column: span 2; display: block; }
 
-   .hero-title-block { padding: 24px 16px 0; }
-   .hero-title { font-size: clamp(3.8rem, 13vw, 5.5rem); }
+   /* Titre — forcer le retour à la ligne */
+   .hero-title-block { padding: 16px 16px 0; overflow: hidden; width: 100%; }
+   .hero-title { font-size: clamp(1.8rem, 7vw, 2.8rem); word-break: break-word; overflow-wrap: break-word; margin-bottom: 0; letter-spacing: -.01em; line-height: 1; }
+   .hero-title .serif-word { font-size: clamp(1.4rem, 5.5vw, 2.2rem); word-break: break-word; overflow-wrap: break-word; letter-spacing: 0; }
+   .hero-foot { grid-template-columns: 1fr 1fr; padding: 10px 16px; gap: 6px; }
+   .hero-foot-item { font-size: .48rem; }
+   .hero-foot-cta { font-size: .48rem; justify-content: center; grid-column: span 2; }
    .hero-foot { grid-template-columns: 1fr 1fr; padding: 14px 16px; gap: 8px; }
    .hero-foot-right { text-align: right; }
    .hero-ticker { display: none; }
