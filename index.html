@@ -56,6 +56,12 @@
   }
   .reveal.visible { opacity: 1; transform: none; }
 
+  /* Sur mobile : désactiver les animations reveal pour un scroll fluide */
+  @media (max-width: 900px) {
+   .reveal { opacity: 1; transform: none; transition: none; }
+   .reveal.visible { opacity: 1; transform: none; }
+  }
+
   /* ══════════════════════════
     TYPOGRAPHIE
   ══════════════════════════ */
@@ -524,11 +530,12 @@
    margin-top: 2px;
   }
   .modal-close {
-   background: none; border: none; font-size: 1.2rem;
-   color: var(--mid); line-height: 1; padding: 4px 8px;
-   transition: color .2s; cursor: none;
+   background: var(--ink); border: none; font-size: .9rem;
+   color: var(--white); line-height: 1; padding: 8px 16px;
+   display: flex; align-items: center; gap: 6px;
+   transition: background .2s; cursor: pointer;
   }
-  .modal-close:hover { color: var(--ink); }
+  .modal-close:hover { background: var(--gold); }
   .modal-iframe {
    flex: 1; border: none; width: 100%;
   }
@@ -603,87 +610,81 @@
   }
 
   @media (max-width: 900px) {
-   /* Cacher le curseur personnalisé sur mobile */
+   /* ── Base ── */
    #cursor { display: none; }
-   body { cursor: auto; }
+   body { cursor: auto; -webkit-overflow-scrolling: touch; scroll-behavior: auto; }
    a, button { cursor: pointer; }
+   html, body { overflow-x: hidden; }
+   * { -webkit-tap-highlight-color: transparent; }
 
-   /* Fix scroll global */
-   html, body { overflow-x: hidden; -webkit-overflow-scrolling: touch; }
-
-   /* NAV — logo complet, bouton compact */
-   nav { padding: 0 12px; height: 44px; }
+   /* ── NAV ── */
+   nav { padding: 0 14px; height: 46px; }
    .nav-links { display: none; }
-   .nav-logo { font-size: .55rem; letter-spacing: .04em; white-space: nowrap; }
-   .nav-cta { font-size: .38rem; padding: 5px 8px; white-space: nowrap; letter-spacing: .04em; }
+   .nav-logo { font-size: .58rem; letter-spacing: .05em; }
+   .nav-cta { font-size: .42rem; padding: 5px 9px; letter-spacing: .05em; white-space: nowrap; }
 
-   /* HERO — grille 2x2 + 1 rangée, toutes les photos */
-   .hero-photos {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 180px 180px 200px;
-   }
+   /* ── HERO ── */
+   .hero-photos { grid-template-columns: 1fr 1fr; grid-template-rows: 170px 170px 200px; }
    .hero-photo.tall { grid-row: span 1; }
    .hero-photo:nth-child(5) { grid-column: span 2; display: block; }
-
-   /* Titre — forcer le retour à la ligne */
    .hero-title-block { padding: 16px 16px 0; overflow: hidden; width: 100%; }
-   .hero-title { font-size: clamp(1.8rem, 7vw, 2.8rem); word-break: break-word; overflow-wrap: break-word; margin-bottom: 0; letter-spacing: -.01em; line-height: 1; }
-   .hero-title .serif-word { font-size: clamp(1.4rem, 5.5vw, 2.2rem); word-break: break-word; overflow-wrap: break-word; letter-spacing: 0; }
+   .hero-title { font-size: clamp(1.8rem, 7vw, 2.8rem); word-break: break-word; margin-bottom: 0; letter-spacing: -.01em; line-height: 1; }
+   .hero-title .serif-word { font-size: clamp(1.4rem, 5.5vw, 2.2rem); word-break: break-word; letter-spacing: 0; }
    .hero-foot { grid-template-columns: 1fr 1fr; padding: 10px 16px; gap: 6px; }
    .hero-foot-item { font-size: .48rem; }
    .hero-foot-cta { font-size: .48rem; justify-content: center; grid-column: span 2; }
-   .hero-foot { grid-template-columns: 1fr 1fr; padding: 14px 16px; gap: 8px; }
-   .hero-foot-right { text-align: right; }
    .hero-ticker { display: none; }
-   .hero-foot-cta { justify-content: center; grid-column: span 2; }
+   .hero-foot-right { text-align: right; }
 
-   /* SALON */
-   .salon-grid, #reservation { grid-template-columns: 1fr; }
-   .salon-left { border-right: none; border-bottom: 1px solid var(--border); padding: 48px 16px; }
-   .salon-right { padding: 48px 16px; }
+   /* ── SALON ── */
+   .salon-grid { grid-template-columns: 1fr; }
+   .salon-left { border-right: none; border-bottom: 1px solid var(--border); padding: 44px 16px; }
+   .salon-right { padding: 40px 16px; }
    .salon-stats { grid-template-columns: repeat(2,1fr); }
    .salon-photos { grid-template-rows: 200px 130px; }
    .salon-photos .s-photo.tall { grid-row: span 1; }
+   .salon-title { font-size: clamp(2.5rem, 10vw, 4rem); margin-bottom: 24px; }
 
-   /* EXPERTISES */
+   /* ── EXPERTISES ── */
    .exp-header { flex-direction: column; }
-   .exp-header-title { border-right: none; border-bottom: 1px solid var(--border); padding: 36px 16px; }
-   .exp-header-right { padding: 28px 16px; }
+   .exp-header-title { border-right: none; border-bottom: 1px solid var(--border); padding: 32px 16px; font-size: clamp(2rem, 8vw, 3rem); }
+   .exp-header-right { padding: 24px 16px; }
    .exp-grid { grid-template-columns: 1fr; }
-   .exp-col { border-right: none; border-bottom: 1px solid var(--border); padding: 36px 16px; }
+   .exp-col { border-right: none; border-bottom: 1px solid var(--border); padding: 32px 16px; }
 
-   /* PRESTATIONS — onglets sur une seule ligne scrollable */
+   /* ── PRESTATIONS ── */
    .presta-wrap { grid-template-columns: 1fr; }
-   .presta-sidebar { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--border); padding: 48px 16px; }
-   .presta-nav {
-    flex-direction: row; flex-wrap: nowrap;
-    gap: 6px; margin-top: 24px;
-    overflow-x: auto; padding-bottom: 8px;
-    -webkit-overflow-scrolling: touch;
-   }
+   .presta-sidebar { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--border); padding: 40px 16px; }
+   .presta-sidebar-title { font-size: clamp(2rem, 8vw, 3rem); }
+   .presta-nav { flex-direction: row; flex-wrap: nowrap; gap: 6px; margin-top: 20px; overflow-x: auto; padding-bottom: 6px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+   .presta-nav::-webkit-scrollbar { display: none; }
    .tab-btn { border: 1px solid var(--border) !important; padding: 7px 12px; font-size: .5rem; flex-shrink: 0; white-space: nowrap; }
    .tab-btn.active::before { display: none; }
    .tab-btn.active { padding-left: 12px; }
-   .presta-main { padding: 40px 16px; }
-   .presta-group-title { font-size: 1.5rem; }
+   .presta-main { padding: 36px 16px; }
+   .presta-group-title { font-size: 1.4rem; }
+   .presta-name { font-size: .75rem; }
+   .presta-price { font-size: 1.1rem; }
 
-   /* RESERVATION */
-   .resa-right-title { font-size: 2rem; line-height: 1.05; }
-   .resa-right { padding: 48px 16px; min-height: auto; }
-   .resa-left { border-right: none; border-bottom: 1px solid var(--border); padding: 48px 16px; }
+   /* ── RESERVATION ── */
+   #reservation { grid-template-columns: 1fr; }
+   .resa-left { border-right: none; border-bottom: 1px solid var(--border); padding: 44px 16px; }
+   .resa-title { font-size: clamp(2.2rem, 9vw, 3.5rem); margin-bottom: 28px; }
+   .resa-right { padding: 40px 16px; min-height: auto; }
+   .resa-right-title { font-size: 1.8rem; line-height: 1.1; }
 
-   /* CONTACT */
+   /* ── CONTACT ── */
+   .contact-inner { padding: 40px 16px; }
    .contact-grid { grid-template-columns: 1fr; }
-   .contact-maps { flex-direction: column; align-items: flex-start; padding: 20px 16px; }
-   .contact-inner { padding: 48px 16px; }
 
-   /* FOOTER */
+   /* ── FOOTER ── */
    .footer-top { grid-template-columns: 1fr; }
-   .footer-col { border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); padding: 32px 16px; }
+   .footer-col { border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); padding: 28px 16px; }
    .footer-bottom { padding: 14px 16px; flex-direction: column; gap: 6px; }
 
-   /* MODALE */
-   .modal-box { width: 100vw; height: 100vh; }
+   /* ── MODALE ── */
+   .modal-box { width: 100vw; height: 100vh; border-radius: 0; }
+   .modal-top { padding: 14px 16px; }
   }
  </style>
 </head>
@@ -965,7 +966,9 @@
     <div class="modal-top-title">Mickael Saintonge</div>
     <div class="modal-top-sub">Réservation en ligne · Confirmation immédiate</div>
    </div>
-   <button class="modal-close" id="close-planity">✕</button>
+   <button class="modal-close" id="close-planity" aria-label="Fermer">
+    ✕ <span style="font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;margin-left:4px;">Fermer</span>
+   </button>
   </div>
   <iframe
    class="modal-iframe"
@@ -985,7 +988,8 @@
    <div class="c-cell">
     <div class="c-cell-label">Adresse</div>
     <div class="c-cell-val">41 rue Boissy<br />d'Anglas, Paris 8e</div>
-    <div class="c-cell-sub">4e étage · Haussmannien<br />Sur rendez-vous uniquement</div>
+    <div class="c-cell-sub">4e étage · Haussmannien<br />Entre la Madeleine et la Concorde</div>
+    <a href="https://maps.google.com/?q=41+rue+Boissy+d'Anglas+75008+Paris" target="_blank" rel="noopener" class="maps-link" style="display:inline-block; margin-top:14px;">Ouvrir dans Maps →</a>
    </div>
    <div class="c-cell">
     <div class="c-cell-label">Réservation</div>
@@ -997,10 +1001,6 @@
     <div class="c-cell-val"><a href="mailto:contact@mickaelsaintonge.com">contact@<br />mickaelsaintonge.com</a></div>
     <div class="c-cell-sub">Instagram · @mickael_saintonge</div>
    </div>
-  </div>
-  <div class="contact-maps reveal" style="transition-delay:.2s">
-   <div class="contact-maps-text"><strong>41 rue Boissy d'Anglas, 75008 Paris.</strong><br />Entre la Madeleine et la Concorde. Hall haussmannien, 4e étage.</div>
-   <a href="https://maps.google.com/?q=41+rue+Boissy+d'Anglas+75008+Paris" target="_blank" rel="noopener" class="maps-link">Ouvrir dans Maps →</a>
   </div>
  </div>
 </section>
