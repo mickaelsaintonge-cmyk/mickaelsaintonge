@@ -27,6 +27,7 @@
   html {
    scroll-behavior: smooth;
    -webkit-overflow-scrolling: touch;
+   height: 100%;
   }
 
   body {
@@ -35,7 +36,9 @@
    background: var(--bg);
    color: var(--ink);
    overflow-x: hidden;
-   overflow-y: auto;
+   overflow-y: scroll;
+   -webkit-overflow-scrolling: touch;
+   touch-action: pan-y;
    cursor: none;
   }
 
@@ -89,20 +92,18 @@
    font-size: .78rem; line-height: 2; letter-spacing: .02em; color: var(--mid);
   }
 
-  /* ══════════════════════════
-    NAV
-  ══════════════════════════ */
   nav {
-   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+   position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
    background: var(--bg);
    border-bottom: 1px solid var(--border);
    display: flex; align-items: center; justify-content: space-between;
    padding: 0 40px;
    height: 52px;
-   /* FIX iPhone : compense la barre Safari et le notch */
-   padding-top: env(safe-area-inset-top);
-   height: calc(52px + env(safe-area-inset-top));
    transition: box-shadow .3s;
+   /* Force le rendu au-dessus de tout sur Safari */
+   -webkit-transform: translateZ(0);
+   transform: translateZ(0);
+   will-change: transform;
   }
   nav.scrolled { box-shadow: 0 2px 24px rgba(14,14,12,.06); }
 
@@ -132,7 +133,7 @@
     HERO
   ══════════════════════════ */
   #accueil {
-   padding-top: calc(52px + env(safe-area-inset-top));
+   padding-top: 52px;
    min-height: 100vh;
    display: flex; flex-direction: column;
    border-bottom: 1px solid var(--border);
@@ -631,10 +632,13 @@
    /* ── NAV ── */
    nav {
     padding: 0 14px;
-    padding-top: env(safe-area-inset-top);
-    height: calc(46px + env(safe-area-inset-top));
-    z-index: 300;
+    height: 46px;
+    top: 0;
+    z-index: 9999;
     background: var(--bg);
+    /* Forcer la visibilité absolue sur Safari iOS */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
    }
    .nav-links { display: none; }
    .nav-logo {
