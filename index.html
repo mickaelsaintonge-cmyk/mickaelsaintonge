@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
  <meta charset="UTF-8" />
- <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
  <title>Mickael Saintonge — Coiffeur Paris 8e</title>
  <meta name="description" content="Quatorze ans au cœur des plus grands salons parisiens. Balayage, couleur, soins. Appartement haussmannien, Paris 8e." />
  <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -20,12 +20,14 @@
    --mid:   #7a7a7a;
    --border:  #e0e0e0;
    --soft:   #f2f2f2;
-   --gold:   #00a86b;  /* vert émeraude vif */
-   --gold-lt: #00cc82;  /* vert plus clair */
-   /* Inox métallique brossé — simulé via dégradé dans les classes */
+   --gold:   #00a86b;
+   --gold-lt: #00cc82;
   }
 
-  html { scroll-behavior: smooth; }
+  html {
+   scroll-behavior: smooth;
+   -webkit-overflow-scrolling: touch;
+  }
 
   body {
    font-family: 'Inter', sans-serif;
@@ -33,6 +35,7 @@
    background: var(--bg);
    color: var(--ink);
    overflow-x: hidden;
+   overflow-y: auto;
    cursor: none;
   }
 
@@ -56,7 +59,6 @@
   }
   .reveal.visible { opacity: 1; transform: none; }
 
-  /* Sur mobile : désactiver les animations reveal pour un scroll fluide */
   @media (max-width: 900px) {
    .reveal { opacity: 1; transform: none; transition: none; }
    .reveal.visible { opacity: 1; transform: none; }
@@ -87,17 +89,19 @@
    font-size: .78rem; line-height: 2; letter-spacing: .02em; color: var(--mid);
   }
 
-  
-
   /* ══════════════════════════
-    NAV — Douglas Hyde style
+    NAV
   ══════════════════════════ */
   nav {
    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
    background: var(--bg);
    border-bottom: 1px solid var(--border);
    display: flex; align-items: center; justify-content: space-between;
-   padding: 0 40px; height: 52px;
+   padding: 0 40px;
+   height: 52px;
+   /* FIX iPhone : compense la barre Safari et le notch */
+   padding-top: env(safe-area-inset-top);
+   height: calc(52px + env(safe-area-inset-top));
    transition: box-shadow .3s;
   }
   nav.scrolled { box-shadow: 0 2px 24px rgba(14,14,12,.06); }
@@ -128,7 +132,7 @@
     HERO
   ══════════════════════════ */
   #accueil {
-   padding-top: 52px;
+   padding-top: calc(52px + env(safe-area-inset-top));
    min-height: 100vh;
    display: flex; flex-direction: column;
    border-bottom: 1px solid var(--border);
@@ -229,7 +233,7 @@
   .sec-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--gold); }
 
   /* ══════════════════════════
-    SALON — deux colonnes
+    SALON
   ══════════════════════════ */
   #salon { border-bottom: 1px solid var(--border); background: var(--white); }
   .salon-grid { display: grid; grid-template-columns: 1fr 1fr; }
@@ -287,7 +291,7 @@
   .s-photo-lbl { font-size: .46rem; letter-spacing: .28em; text-transform: uppercase; color: var(--mid); }
 
   /* ══════════════════════════
-    EXPERTISE — 3 cols + bande titre
+    EXPERTISE
   ══════════════════════════ */
   #expertises { border-bottom: 1px solid var(--border); }
 
@@ -427,7 +431,7 @@
   .tokio-text p { font-size: .67rem; line-height: 1.9; color: rgba(255,255,255,.7); }
 
   /* ══════════════════════════
-    RESERVATION — widget Planity
+    RESERVATION
   ══════════════════════════ */
   #reservation {
    border-bottom: 1px solid var(--border);
@@ -460,7 +464,7 @@
   .resa-body { font-size: .72rem; line-height: 2; color: var(--mid); margin-top: 36px; }
 
   /* ══════════════════════════
-    MODALE PLANITY
+    ZONE RÉSERVATION DROITE
   ══════════════════════════ */
   .resa-right {
    background: var(--soft);
@@ -496,7 +500,9 @@
    font-size: .54rem; letter-spacing: .18em; text-transform: uppercase; color: var(--mid);
   }
 
-  /* Modale */
+  /* ══════════════════════════
+    MODALE PLANITY
+  ══════════════════════════ */
   .modal-overlay {
    position: fixed; inset: 0; z-index: 1000;
    background: rgba(10,10,10,.7);
@@ -609,19 +615,46 @@
    border-top: 1px solid rgba(255,255,255,.15);
   }
 
+  /* ══════════════════════════
+    MOBILE
+  ══════════════════════════ */
   @media (max-width: 900px) {
    /* ── Base ── */
    #cursor { display: none; }
    body { cursor: auto; -webkit-overflow-scrolling: touch; scroll-behavior: auto; }
+   /* FIX SCROLL : ne jamais bloquer le scroll du body sur mobile */
+   body.modal-lock { overflow: hidden; }
    a, button { cursor: pointer; }
    html, body { overflow-x: hidden; }
    * { -webkit-tap-highlight-color: transparent; }
 
    /* ── NAV ── */
-   nav { padding: 0 14px; height: 46px; }
+   nav {
+    padding: 0 14px;
+    padding-top: env(safe-area-inset-top);
+    height: calc(46px + env(safe-area-inset-top));
+    z-index: 300;
+    background: var(--bg);
+   }
    .nav-links { display: none; }
-   .nav-logo { font-size: .58rem; letter-spacing: .05em; }
-   .nav-cta { font-size: .42rem; padding: 5px 9px; letter-spacing: .05em; white-space: nowrap; }
+   .nav-logo {
+    font-size: .65rem;
+    letter-spacing: .03em;
+    /* FIX: s'assurer que le logo est visible */
+    opacity: 1 !important;
+    visibility: visible !important;
+    flex-shrink: 0;
+   }
+   .nav-cta {
+    font-size: .44rem;
+    padding: 7px 10px;
+    letter-spacing: .05em;
+    white-space: nowrap;
+    /* FIX: s'assurer que le bouton RDV est toujours visible */
+    opacity: 1 !important;
+    visibility: visible !important;
+    flex-shrink: 0;
+   }
 
    /* ── HERO ── */
    .hero-photos { grid-template-columns: 1fr 1fr; grid-template-rows: 170px 170px 200px; }
@@ -702,12 +735,11 @@
   <li><a href="#reservation">Réservation</a></li>
   <li><a href="#contact">Contact</a></li>
  </ul>
- <a href="#reservation" class="nav-cta">Prendre rendez-vous</a>
+ <a href="#reservation" class="nav-cta js-open-planity">Prendre rendez-vous</a>
 </nav>
 
 <!-- ══ HERO ══ -->
 <section id="accueil">
- <!-- Grille photos style Douglas Hyde -->
  <div class="hero-photos">
   <div class="hero-photo tall">
    <img src="photo1.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;" />
@@ -726,7 +758,6 @@
   </div>
  </div>
 
- <!-- Titre massif Artelly style -->
  <div class="hero-title-block">
   <div class="hero-eyebrow reveal" style="transition-delay:.05s">Paris · 8e · Confidentiel</div>
   <h1 class="hero-title reveal" style="transition-delay:.18s">
@@ -737,7 +768,7 @@
 
  <div class="hero-foot">
   <div class="hero-foot-item">41 rue Boissy d'Anglas · <strong>75008 Paris</strong></div>
-  <a href="#reservation" class="hero-foot-cta">Prendre rendez-vous</a>
+  <a href="#reservation" class="hero-foot-cta js-open-planity">Prendre rendez-vous</a>
   <div class="hero-foot-item hero-foot-right">
    <div class="hero-ticker">
     <span class="hero-ticker-inner">
@@ -854,7 +885,6 @@
 
   <div class="presta-main">
 
-   <!-- Balayage -->
    <div class="presta-group active" id="group-balayage">
     <p class="presta-group-title">Balayage</p>
     <div class="presta-row"><div><div class="presta-name">Balayage / coiffage</div><div class="presta-desc">Shampoing et soin inclus · 2h</div></div><div class="presta-price">dès 235€</div></div>
@@ -867,7 +897,6 @@
     </div>
    </div>
 
-   <!-- Couleur -->
    <div class="presta-group" id="group-couleur">
     <p class="presta-group-title">Couleur</p>
     <div class="presta-row"><div><div class="presta-name">Couleur / coiffage</div><div class="presta-desc">Soin adapté inclus · 1h30</div></div><div class="presta-price">dès 140€</div></div>
@@ -880,7 +909,6 @@
     </div>
    </div>
 
-   <!-- Coupe -->
    <div class="presta-group" id="group-coupe">
     <p class="presta-group-title">Coupe</p>
     <div class="presta-row"><div><div class="presta-name">Coupe femme</div><div class="presta-desc">Shampoing · coupe · coiffage · 1h</div></div><div class="presta-price">dès 125€</div></div>
@@ -891,7 +919,6 @@
     </div>
    </div>
 
-   <!-- Soins -->
    <div class="presta-group" id="group-soins">
     <p class="presta-group-title">Soins</p>
     <div class="presta-row"><div><div class="presta-name">Soin Tokio Inkarami · cheveux courts</div><div class="presta-desc">Réparation profonde · coiffage inclus · 1h</div></div><div class="presta-price">dès 175€</div></div>
@@ -899,11 +926,10 @@
     <div class="presta-row"><div><div class="presta-name">Soin Tokio Inkarami · cheveux longs</div><div class="presta-desc">Réparation profonde · coiffage inclus · 1h</div></div><div class="presta-price">dès 195€</div></div>
     <div class="presta-note">
      <div class="presta-note-bar"></div>
-     <p class="presta-note-text">Les soins Tokio Inkarami réparent la fibre en profondeur — douceur, brillance, résistance. Disponibles seuls ou en complément de vos prestations.</p>
+     <p class="presta-note-text">Les soins Tokio Inkarami réparent la fibre en profondeur — douceur, brillance, résistance.</p>
     </div>
    </div>
 
-   <!-- Lissage -->
    <div class="presta-group" id="group-lissage">
     <p class="presta-group-title">Lissage</p>
     <div class="presta-row"><div><div class="presta-name">Lissage brésilien</div><div class="presta-desc">Kératine · devis selon temps de travail</div></div><div class="presta-price">Sur devis</div></div>
@@ -913,7 +939,6 @@
     </div>
    </div>
 
-   <!-- Événementiel -->
    <div class="presta-group" id="group-evenement">
     <p class="presta-group-title">Événementiel</p>
     <div class="presta-row"><div><div class="presta-name">Coiffure de soirée</div><div class="presta-desc">Mise en forme · chignon · tresses · coiffage élaboré</div></div><div class="presta-price">Sur devis</div></div>
@@ -951,7 +976,7 @@
  <div class="resa-right reveal" style="transition-delay:.2s">
   <div class="resa-right-title">PRENDRE<br />RENDEZ-VOUS</div>
   <p class="resa-right-sub">Choisissez votre prestation et votre créneau directement en ligne. Confirmation immédiate.</p>
-  <button class="btn-rdv" id="open-planity">
+  <button class="btn-rdv js-open-planity" id="open-planity">
    <span>Réserver maintenant</span>
   </button>
   <p class="btn-rdv-sub">Via Planity · Gratuit · 24h/24</p>
@@ -1035,25 +1060,34 @@
 </footer>
 
 <script>
- // Cursor
+ // ── Cursor (desktop only) ──
  const cur = document.getElementById('cursor');
- document.addEventListener('mousemove', e => { cur.style.left = e.clientX+'px'; cur.style.top = e.clientY+'px'; });
- document.querySelectorAll('a,button').forEach(el => {
-  el.addEventListener('mouseenter', () => cur.classList.add('grow'));
-  el.addEventListener('mouseleave', () => cur.classList.remove('grow'));
- });
+ if (cur) {
+  document.addEventListener('mousemove', e => {
+   cur.style.left = e.clientX + 'px';
+   cur.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, button').forEach(el => {
+   el.addEventListener('mouseenter', () => cur.classList.add('grow'));
+   el.addEventListener('mouseleave', () => cur.classList.remove('grow'));
+  });
+ }
 
- // Nav
+ // ── Nav scrolled ──
  const nav = document.getElementById('nav');
- window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 10), { passive: true });
+ window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 10);
+ }, { passive: true });
 
- // Reveal
+ // ── Reveal ──
  const io = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  entries.forEach(e => {
+   if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+  });
  }, { threshold: .07 });
  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
- // Tabs prestations
+ // ── Tabs prestations ──
  document.querySelectorAll('.tab-btn').forEach(btn => {
   btn.addEventListener('click', () => {
    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -1063,31 +1097,51 @@
   });
  });
 
-
- // ── Modale Planity ──
- const modal  = document.getElementById('planity-modal');
- const openBtn = document.getElementById('open-planity');
+ // ══════════════════════════════════════════════
+ // MODALE PLANITY — VERSION CORRIGÉE
+ // FIX 1 : overflow géré proprement (plus de bug scroll desktop)
+ // FIX 2 : liens #reservation ne scrollent plus + n'ouvrent pas la modale automatiquement sur mobile
+ // FIX 3 : bouton Fermer toujours visible
+ // ══════════════════════════════════════════════
+ const modal   = document.getElementById('planity-modal');
  const closeBtn = document.getElementById('close-planity');
+ const isMobile = () => window.innerWidth <= 900;
 
  function openModal() {
   modal.classList.add('open');
-  document.body.style.overflow = 'hidden';
+  // FIX: utiliser une classe CSS au lieu de style inline
+  // pour éviter les conflits avec les règles mobile
+  document.body.classList.add('modal-lock');
  }
+
  function closeModal() {
   modal.classList.remove('open');
-  document.body.style.overflow = '';
+  document.body.classList.remove('modal-lock');
  }
 
- openBtn.addEventListener('click', openModal);
+ // Bouton principal "Réserver maintenant"
+ document.getElementById('open-planity').addEventListener('click', openModal);
+
+ // Bouton Fermer
  closeBtn.addEventListener('click', closeModal);
+
+ // Clic en dehors de la modale
  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+
+ // Touche Échap
  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
- // Aussi ouvrir la modale depuis les CTA nav et hero
- document.querySelectorAll('a[href="#reservation"]').forEach(a => {
+ // FIX: liens "Prendre rendez-vous" dans nav et hero
+ // Sur desktop → scroll vers #reservation puis ouvre la modale
+ // Sur mobile → scroll vers #reservation SEULEMENT (pas de modale auto)
+ document.querySelectorAll('a.js-open-planity').forEach(a => {
   a.addEventListener('click', e => {
-   // Laisser le scroll se faire puis ouvrir la modale
-   setTimeout(openModal, 600);
+   e.preventDefault();
+   const target = document.getElementById('reservation');
+   if (target) target.scrollIntoView({ behavior: 'smooth' });
+   if (!isMobile()) {
+    setTimeout(openModal, 600);
+   }
   });
  });
 </script>
