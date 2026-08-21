@@ -132,6 +132,7 @@
   .hero-foot-cta::after { content: '→'; color: var(--gold); }
   .hero-foot-cta:hover { gap: 18px; color: var(--gold); }
   .hero-foot-right { text-align: right; }
+  .hero-info-mobile { display: none; }
   .hero-ticker { overflow: hidden; white-space: nowrap; }
   .hero-ticker-inner { display: inline-block; animation: ticker 22s linear infinite; font-size: .54rem; letter-spacing: .2em; text-transform: uppercase; color: var(--border); }
   @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -255,6 +256,9 @@
   .c-cell-sub { font-size: .6rem; color: var(--mid); margin-top: 10px; line-height: 1.8; }
   .maps-link { font-size: .54rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); text-decoration: none; white-space: nowrap; transition: color .2s; }
   .maps-link:hover { color: var(--ink); }
+  .insta-cta { white-space: normal; }
+  .c-cell-sub a { color: inherit; text-decoration: none; transition: color .2s; }
+  .c-cell-sub a:hover { color: var(--gold); }
 
   /* ══ FOOTER ══ */
   footer { background: var(--gold); color: var(--white); padding: 0; }
@@ -330,8 +334,19 @@
     overflow: visible;
    }
 
+   /* Informations pratiques compactes sous le titre — remplace, sans la
+      dupliquer, l'adresse déjà affichée dans le pied du hero. */
+   .hero-info-mobile {
+    display: block;
+    font-size: .64rem;
+    line-height: 1.7;
+    letter-spacing: .01em;
+    color: var(--mid);
+    margin-top: 14px;
+   }
+
    .hero-foot { grid-template-columns: 1fr 1fr; padding: 10px 16px; gap: 6px; }
-   .hero-foot-item { font-size: .48rem; }
+   .hero-foot-item:first-child { display: none; }
    .hero-foot-cta { font-size: .48rem; justify-content: center; grid-column: span 2; min-height: 44px; }
    .hero-ticker { display: none; }
 
@@ -443,6 +458,7 @@
  <div class="hero-title-block">
   <div class="hero-eyebrow reveal" style="transition-delay:.05s">Paris · 8e · Confidentiel</div>
   <h1 class="hero-title reveal" style="transition-delay:.18s">L'ART<br /><span class="serif-word">du cheveu.</span></h1>
+  <div class="hero-info-mobile reveal" style="transition-delay:.22s">Salon privé · Paris 8e<br />41 rue Boissy-d'Anglas · 4e étage<br />Sur rendez-vous</div>
  </div>
  <div class="hero-foot">
   <div class="hero-foot-item">41 rue Boissy d'Anglas · <strong>75008 Paris</strong></div>
@@ -595,6 +611,7 @@
 <section id="contact">
  <div class="contact-inner">
   <div class="sec-label reveal">Contact</div>
+  <a href="https://www.instagram.com/mickael_saintonge" target="_blank" rel="noopener" class="maps-link insta-cta reveal" style="display:inline-block; margin-top:16px;">Voir mon travail sur Instagram →</a>
   <div class="contact-grid reveal" style="transition-delay:.1s; margin-top:40px;">
    <div class="c-cell">
     <div class="c-cell-label">Adresse</div>
@@ -610,7 +627,7 @@
    <div class="c-cell">
     <div class="c-cell-label">Email</div>
     <div class="c-cell-val"><a href="mailto:contact@mickaelsaintonge.com">contact@<br />mickaelsaintonge.com</a></div>
-    <div class="c-cell-sub">Instagram · @mickael_saintonge</div>
+    <div class="c-cell-sub"><a href="https://www.instagram.com/mickael_saintonge" target="_blank" rel="noopener">Instagram · @mickael_saintonge</a></div>
    </div>
   </div>
  </div>
@@ -632,7 +649,7 @@
   </div>
   <div class="footer-col"><span class="footer-nav-label">Adresse</span><p class="footer-addr">41 rue Boissy d'Anglas<br />75008 Paris · 4e étage<br /><br />Madeleine · Concorde<br />Sur rendez-vous</p></div>
  </div>
- <div class="footer-bottom"><span>© 2025 Mickael Saintonge</span><span>mickaelsaintonge.com</span></div>
+ <div class="footer-bottom"><span>© 2026 Mickael Saintonge</span><span>mickaelsaintonge.com</span></div>
 </footer>
 
 <script>
